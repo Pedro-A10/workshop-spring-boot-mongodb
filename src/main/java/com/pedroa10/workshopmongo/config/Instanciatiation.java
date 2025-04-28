@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.pedroa10.workshopmongo.domain.Post;
 import com.pedroa10.workshopmongo.domain.User;
+import com.pedroa10.workshopmongo.dto.AuthorDTO;
 import com.pedroa10.workshopmongo.repository.PostRepository;
 import com.pedroa10.workshopmongo.repository.UserRepository;
 
@@ -35,11 +36,11 @@ public class Instanciatiation implements CommandLineRunner {
 		User alex = new User (null, "Alex Green", "alex@gmail.com");
 		User bob = new User (null, "Bob Grey", "bob@gmail.com");
 		
-		Post post1 = new Post(null, sdf.parse("28/04/2025"), "Mais um dia igual", "Tudo se repetiu hoje", maria);
-		Post post2 = new Post(null, sdf.parse("28/04/2025"), "TFT BEST GAME OF THE YEAR", "TFT É BAUM D++++", maria);
-		
-		
 		userRepository.saveAll(Arrays.asList(alex, maria, bob));
+		
+		Post post1 = new Post(null, sdf.parse("28/04/2025"), "Mais um dia igual", "Tudo se repetiu hoje", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("28/04/2025"), "TFT BEST GAME OF THE YEAR", "TFT É BAUM D++++", new AuthorDTO(maria));
+		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 }
